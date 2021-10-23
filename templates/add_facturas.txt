@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Agregar Factura{% endblock %}
+{% block contenido %}
+    <div class="container">
+        <section class="section">
+            <div class="columns">
+                <div class="column is-one-third">
+                    <h3 class="is-size-3">Agregar Factura</h3>
+                    <form action="{{url_for('save_factura')}}" method="post">
+                        <label for="name">Fecha:</label>
+                        <input required type="date" class="form-control" placeholder="Fecha de la factura" name="date" id="date">
+
+                        <label for="name">Id de la factura:</label>
+                        <input required type="number" class="form-control" placeholder="Numero del cliente" name="id" id="id">
+
+                        <label for="name">Precio:</label>
+                        <input required type="number" class="form-control" placeholder="Precio" name="price" id="price">
+
+                        <label for="name">Saldo:</label>
+                        <input required type="number" class="form-control" placeholder="Saldo" name="balance" id="balance">
+
+                        <br>
+                        <button type="submit" class="btn btn-success">Guardar F</button>
+                        <a href="{{url_for('pagina')}}" class="btn btn-primary">Volver</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

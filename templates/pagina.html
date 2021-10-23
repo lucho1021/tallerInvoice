@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block titulo %} Clientes y Factura {% endblock %}
+{% block contenido %}
+<div class="container">
+    <section class="section">
+        <div class="columns">
+            <div class="column">
+                <h3 class="is-size-3">Cliente</h3>
+                <a href="{{url_for('form_add_user')}}" class="btn btn-primary">Agregar</a>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Status</th>
+                            <th>Mobile</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for INVOICE in INVOICES %}
+                        <tr>
+                            <td>{{INVOICE[1]}}</td>
+                            <td>{{INVOICE[2]}}</td>
+                            <td>{{INVOICE[3]}}</td>
+                            <td>
+                                {# Pasar el id (lo que hay en user[0] #}
+                                {# Se guarda para los que tienen parametros #}
+                                <a href="{{url_for('edit_cliente', id=INVOICE[0])}}"
+                                    class="btn btn-success">Editar</a>
+                            </td>
+                            <td>
+                                {# se utiliza el metodo request.form #}
+                                <form action="{{url_for('delete_cliente')}}" method="POST" onSubmit="return confirm('Está seguro de eliminar este cliente?');">
+                                    <input type="hidden" name="id" value="{{INVOICE[0]}}">
+                                    <button class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
